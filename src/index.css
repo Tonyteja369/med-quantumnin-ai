@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: 0 0% 100%;
+    --bg-surface: 210 25% 98%;
+    --bg-elevated: 210 20% 96%;
+    --bg-overlay: 214 20% 94%;
+
+    --accent-primary: 191 100% 50%;
+    --accent-secondary: 153 100% 50%;
+    --accent-warning: 43 100% 50%;
+    --accent-danger: 352 100% 64%;
+    --accent-info: 237 97% 75%;
+
+    --text-primary: 222 84% 5%;
+    --text-secondary: 215 16% 47%;
+    --text-muted: 215 14% 65%;
+    --text-inverse: 0 0% 100%;
+
+    --border-subtle: 214 32% 94%;
+    --border-default: 214 25% 88%;
+    --border-strong: 214 20% 78%;
+
+    --background: var(--bg-base);
+    --foreground: var(--text-primary);
+    --card: var(--bg-surface);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-elevated);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--accent-primary);
+    --primary-foreground: 222 84% 5%;
+    --secondary: var(--bg-elevated);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--bg-overlay);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--accent-info);
+    --accent-foreground: var(--text-primary);
+    --destructive: var(--accent-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--border-default);
+    --input: var(--border-default);
+    --ring: var(--accent-primary);
+    --radius: 0.75rem;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+    --shadow-glow-primary: 0 0 30px rgba(0,212,255,0.25);
+
+    --glass-bg: rgba(255,255,255,0.6);
+    --glass-border: rgba(0,0,0,0.06);
+
+    --transition-fast: 120ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 350ms cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* Apple-inspired dark theme */
+  .dark, [data-theme="dark"] {
+    --bg-base: 222 47% 4%;
+    --bg-surface: 220 30% 7%;
+    --bg-elevated: 220 22% 11%;
+    --bg-overlay: 220 18% 14%;
+
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20% 65%;
+    --text-muted: 215 14% 46%;
+    --text-inverse: 222 84% 5%;
+
+    --border-subtle: 217 33% 14%;
+    --border-default: 217 30% 18%;
+    --border-strong: 217 25% 25%;
+
+    --background: var(--bg-base);
+    --foreground: var(--text-primary);
+    --card: var(--bg-surface);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-elevated);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--accent-primary);
+    --primary-foreground: 222 84% 5%;
+    --secondary: var(--bg-elevated);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--bg-overlay);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--accent-info);
+    --accent-foreground: var(--text-primary);
+    --destructive: var(--accent-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--border-default);
+    --input: var(--border-default);
+    --ring: var(--accent-primary);
+
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.3);
+    --shadow-glow-primary: 0 0 30px rgba(0,212,255,0.25);
+
+    --glass-bg: rgba(13,17,23,0.6);
+    --glass-border: rgba(255,255,255,0.08);
+  }
+
+  
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: hsl(var(--accent-primary) / 0.3);
+  }
+
+  *:focus-visible {
+    outline: 2px solid hsl(var(--accent-primary));
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--text-muted) / 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--text-muted) / 0.5);
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .medical-gradient {
+    background: linear-gradient(135deg, hsl(var(--accent-primary)), hsl(var(--accent-secondary)));
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--accent-primary)), hsl(var(--accent-secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.8; }
+  }
+
+  @keyframes ecg-trace {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 transparent; }
+    100% { box-shadow: var(--shadow-glow-primary); }
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1.2s ease-in-out infinite;
+  }
+
+  .animate-ecg-trace {
+    animation: ecg-trace 3s linear infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--accent-primary) / 0.1) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .glass-card {
+    backdrop-filter: none;
+    background: white;
+    border: 1px solid #e2e8f0;
+  }
+}
